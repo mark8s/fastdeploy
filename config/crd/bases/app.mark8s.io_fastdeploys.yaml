@@ -1,0 +1,86 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.10.0
+  creationTimestamp: null
+  name: fastdeploys.app.mark8s.io
+spec:
+  group: app.mark8s.io
+  names:
+    kind: FastDeploy
+    listKind: FastDeployList
+    plural: fastdeploys
+    shortNames:
+    - fd
+    singular: fastdeploy
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: FastDeploy is the Schema for the fastdeploys API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: FastDeploySpec defines the desired state of FastDeploy
+            properties:
+              enableService:
+                description: whether to create service
+                type: boolean
+              image:
+                description: container image
+                type: string
+              name:
+                description: application name If not specified, a random name will
+                  be used
+                maxLength: 50
+                type: string
+              namespace:
+                description: application namespace If not specified, a random name
+                  will be used
+                maxLength: 64
+                type: string
+              port:
+                description: application port
+                format: int32
+                type: integer
+              replicas:
+                description: application replicas
+                format: int32
+                minimum: 1
+                type: integer
+            required:
+            - enableService
+            - port
+            type: object
+          status:
+            description: FastDeployStatus defines the observed state of FastDeploy
+            properties:
+              serviceIp:
+                description: service ip
+                type: string
+              status:
+                description: application running status
+                type: string
+            required:
+            - serviceIp
+            - status
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

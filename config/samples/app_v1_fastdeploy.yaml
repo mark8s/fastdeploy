@@ -1,0 +1,12 @@
+apiVersion: app.mark8s.io/v1
+kind: FastDeploy
+metadata:
+  labels:
+    app.kubernetes.io/name: fastdeploy
+    app.kubernetes.io/instance: fastdeploy-sample
+    app.kubernetes.io/part-of: fastdeploy
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: fastdeploy
+  name: fastdeploy-sample
+spec:
+  # TODO(user): Add fields here

@@ -1,0 +1,16 @@
+domain: mark8s.io
+layout:
+- go.kubebuilder.io/v3
+projectName: fastdeploy
+repo: github.com/mark8s/fastdeploy
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: mark8s.io
+  group: app
+  kind: FastDeploy
+  path: github.com/mark8s/fastdeploy/pkg/apis/fastdeploy/v1
+  version: v1
+version: "3"
