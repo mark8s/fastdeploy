@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Spec.Name }}
+  namespace: {{ .Spec.Namespace }}
+  labels:
+    app: {{ .Spec.Name }}
+spec:
+  replicas: {{.Spec.Replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Spec.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Spec.Name }}
+    spec:
+      containers:
+        - name: {{ .Spec.Name }}
+          image: {{ .Spec.Image }}
+          ports:
+            - containerPort: {{ .Spec.Port }}
+
+

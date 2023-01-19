@@ -9,4 +9,13 @@ metadata:
     app.kubernetes.io/created-by: fastdeploy
   name: fastdeploy-sample
 spec:
-  # TODO(user): Add fields here
+  name: fast
+  namespace: demo
+  image: registry.cn-shenzhen.aliyuncs.com/solarmesh/httpbin
+  port: 80
+  replicas: 1
+  enableService: true
+
+
+
+
